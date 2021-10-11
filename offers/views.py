@@ -89,3 +89,7 @@ def download(request, pk):
     url = f'http://{host}/offers/{str(pk)}/confirm-agreement/'
     temp = generate_pdf(url)
     return FileResponse(temp, as_attachment=True, filename=f'{offer_point.name}.pdf')
+
+
+def index(request):
+    return redirect('offers_index')
