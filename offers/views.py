@@ -51,7 +51,7 @@ class QrCodeUpdate(UpdateView):
 
 
 def confirmation(request, pk):
-    if request.session['confirmed']:
+    if request.session.get('confirmed', None):
         return redirect('create_offer', pk)
     if request.method == 'POST':
         request.session['confirmed'] = request.POST.get('confirmation', False)
