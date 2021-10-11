@@ -1,10 +1,11 @@
 from django.urls import path
 
 from offers.views import OfferList, OfferDetail, QrCodesList, download, confirmation, create_offer, success, \
-    QrCodeUpdate, QrCodeCreate
+    QrCodeUpdate, QrCodeCreate, index
 
 urlpatterns = [
-    path('staff/', OfferList.as_view()),
+    path('', index),
+    path('staff/', OfferList.as_view(), name='offers_index'),
     path('staff/offers/<int:page>/', OfferList.as_view(), name='offers'),
     path('staff/offers/detail/<int:pk>/', OfferDetail.as_view(), name='offer_detail'),
 
