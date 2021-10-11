@@ -1,0 +1,11 @@
+.table-title {
+    background-color: rgb(205, 204, 204);
+}
+
+table.table {
+    width: 100% !important;
+}
+
+div.container-fluid {
+    padding: 0 !important;
+}

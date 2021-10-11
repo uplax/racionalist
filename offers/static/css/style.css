@@ -1,0 +1,17 @@
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+.offer-card {
+    transition: box-shadow .3s;
+}
+
+.offer-card:hover {
+    box-shadow: 10px 5px 5px rgba(33,33,33,.2);
+}
+
+.table-title {
+    background-color: rgb(205, 204, 204);
+}

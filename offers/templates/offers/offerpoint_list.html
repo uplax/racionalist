@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load tools %}
+
+{% block content %}
+    <div class="row">
+        <div class="list-group col-md-2">
+            <a href="{% url 'offers' 1 %}" class="d-flex list-group-item list-group-item-action justify-content-between"
+               aria-current="true">
+                Предложения
+                {% unread_offers %}
+            </a>
+            <a class="list-group-item list-group-item-action active">QR-коды</a>
+        </div>
+        <ul class="list-group col-md-10">
+            <nav class="navbar navbar-light bg-light mb-2 border rounded p-1">
+                <a class="btn btn-success btn-sm ms-auto" href="{% url 'qr_codes_create' %}"><i class="fas fa-plus me-2"></i>Новый код</a>
+            </nav>
+            {% for point in object_list %}
+                <li class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col-md-1 pe-1">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <div class="col-md-9 p-0">
+                            <b>
+                                {{ point.name }}
+                            </b>
+                        </div>
+                        <div class="col-md-2 text-end">
+                            <a class="btn btn-outline-secondary btn-sm me-2 ms-auto" href="{% url 'qr_codes_update' point.pk %}">
+                                <i class="far fa-edit"></i>
+                            </a>
+                            <a class="btn btn-outline-secondary btn-sm" href="{% url 'download' point.pk %}">
+                                <i class="fas fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <nav class="mt-2">
+            <ul class="pagination">
+                <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} ms-auto">
+                    <a class="page-link"
+                       {% if page_obj.has_previous %}href="{% url 'qr_codes' page_obj.previous_page_number %}"{% endif %}>Назад</a>
+                </li>
+                <li class="page-item disabled"><a class="page-link" href="#">
+                    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+                </a></li>
+                <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                    <a class="page-link"
+                       {% if page_obj.has_next %}href="{% url 'qr_codes' page_obj.next_page_number %}"{% endif %}>Вперед</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (performance.navigation.type == 2) {
+                location.reload(true);
+            }
+        });
+    </script>
+{% endblock %}

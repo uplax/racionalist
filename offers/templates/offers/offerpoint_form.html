@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="card col-sm-12 col-md-4 p-0 mx-auto">
+            <div class="card-header">
+                <h4>{% if request.resolver_match.url_name == 'qr_codes_create' %}Новый QR-код{% else %}Редактирование
+                    кода{% endif %}</h4>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <input class="form-control" name="name" placeholder="Наименование" value="{% if form.name.value %}{{ form.name.value }}{% endif %}">
+                </div>
+                <div class="card-body border-bottom">
+                    <textarea class="form-control" name="description" placeholder="Описание">{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+                </div>
+                <div class="card-body d-flex">
+                    <input type="submit" class="btn btn-primary mx-auto" value="Сохранить">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

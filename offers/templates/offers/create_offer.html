@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="card mx-auto col-md-6 col-sm-12 p-0">
+            <div class="card-header">
+                <h4>Форма подачи предложения</h4>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <select class="form-select" name="offer_target">
+                        {% for option in form.offer_target %}
+                            {% if forloop.counter0 == 0 %}
+                                <option value="">Цель предложения</option>
+                                <hr>
+                            {% else %}
+                                {{ option }}
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="card-body pt-0 border-bottom">
+                    <input class="form-control" name="target_other">
+                </div>
+                <div class="card-body">
+                    <input class="form-control" placeholder="Короткое описание" name="short_name">
+                </div>
+                <div class="card-body pt-0">
+                    <input class="form-control" placeholder="Фамилия" name="author_last_name">
+                </div>
+                <div class="card-body pt-0">
+                    <input class="form-control" placeholder="Имя" name="author_first_name">
+                </div>
+                <div class="card-body pt-0">
+                    <input class="form-control" placeholder="Отчество" name="author_second_name">
+                </div>
+                <div class="card-body pt-0">
+                    <input class="form-control" placeholder="Табельный номер" name="personnel_number">
+                </div>
+                <div class="card-body pt-0">
+                    <input class="form-control" placeholder="Номер телефона" name="phone">
+                </div>
+                <div class="card-body pt-0">
+                    <textarea class="form-control" placeholder="Описание проблемы" name="problem_description"></textarea>
+                </div>
+                <div class="card-body pt-0">
+                    <textarea class="form-control" placeholder="Предложение по улучшению" name="suggestion_for_improvement"></textarea>
+                </div>
+                <div class="card-body pt-0">
+                    <textarea class="form-control" placeholder="Ожидаемый результат" name="expected_result"></textarea>
+                </div>
+                <div class="card-body d-flex align-content-center border-top">
+                    <input type="submit" class="btn btn-primary mx-auto" value="Отправить">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="card col-sm-12 col-md-3 mx-auto p-0">
+            <div class="card-header">
+                <h4>Вход</h4>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <input class="form-control" name="username" placeholder="Имя пользователя">
+                </div>
+                <div class="card-body border-bottom">
+                    <input class="form-control" type="password" name="password" placeholder="Пароль">
+                </div>
+                <div class="card-body d-flex">
+                    <input type="submit" class="btn btn-primary mx-auto" value="Вход">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

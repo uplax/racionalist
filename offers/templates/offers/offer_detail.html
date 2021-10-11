@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" media="print" href="{% static 'css/print.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <table class="table table-bordered rounded-3 shadow w-75 mx-auto">
+        <tr>
+            <td colspan="2">
+                <h4>Предложение по улучшению №{{ offer.pk }}</h4>
+            </td>
+        </tr>
+        <tr class="table-title">
+            <td colspan="2">
+                <h5>Информация об улучшении:</h5>
+            </td>
+        </tr>
+        <tr>
+            <td class="w-25"><b><i class="far fa-calendar-alt me-2"></i>Дата подачи:</b></td>
+            <td>{{ offer.created_at|time }} {{ offer.created_at|date }}</td>
+        </tr>
+        <tr>
+            <td class="w-25"><b><i class="fas fa-map-marker-alt me-2"></i>Место подачи:</b></td>
+            <td>{{ offer.offer_from.name }}</td>
+        </tr>
+        <tr>
+            <td class="w-25"><b><i class="far fa-dot-circle me-2"></i>Цель предложения:</b></td>
+            <td>{{ offer.offer_target }}</td>
+        </tr>
+        {% if offer.offer_target == 'Прочее' %}
+            <tr>
+                <td colspan="2">{{ offer.short_name }}</td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td class="w-25"><b><i class="far fa-comment-dots me-2"></i>Краткое описание:</b></td>
+            <td>{{ offer.short_name }}</td>
+        </tr>
+        <tr class="table-title">
+            <td colspan="2"><h5>Автор предложения:</h5></td>
+        </tr>
+        <tr>
+            <td class="w-25"><b><i class="far fa-user me-2"></i>Фамилия:</b></td>
+            <td>{{ offer.author_last_name }}</td>
+        </tr>
+        <tr>
+            <td class="w-25"><b><i class="far fa-user me-2"></i>Имя:</b></td>
+            <td>{{ offer.author_first_name }}</td>
+        </tr>
+        <tr>
+            <td class="w-25"><b><i class="far fa-user me-2"></i>Отчество:</b></td>
+            <td>{{ offer.author_second_name }}</td>
+        </tr>
+        <tr>
+            <td class="w-25"><b><i class="fas fa-angle-double-up me-2"></i>Табельный номер:</b></td>
+            <td>{{ offer.personnel_number }}</td>
+        </tr>
+        <tr>
+            <td class="w-25"><b><i class="fas fa-phone-alt me-2"></i>Номер телефона:</b></td>
+            <td>{{ offer.phone }}</td>
+        </tr>
+        <tr class="table-title">
+            <td colspan="2"><h5>Суть предложения:</h5></td>
+        </tr>
+        <tr>
+            <td><b><i class="fas fa-exclamation-triangle me-2"></i>Описание проблемы:</b></td>
+            <td>{{ offer.problem_description }}</td>
+        </tr>
+        <tr>
+            <td><b><i class="fab fa-buffer me-2"></i>Предложение по улучшению:</b></td>
+            <td>{{ offer.suggestion_for_improvement }}</td>
+        </tr>
+        <tr>
+            <td><b><i class="fas fa-poll me-2"></i>Ожидаемый результат:</b></td>
+            <td>{{ offer.expected_result }}</td>
+        </tr>
+
+    </table>
+
+{% endblock %}

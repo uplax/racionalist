@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load tools %}
+
+{% block content %}
+    <div class="row">
+        <div class="list-group col-md-2">
+            <a href="#" class="d-flex list-group-item list-group-item-action active justify-content-between" aria-current="true">
+                Предложения
+                {% unread_offers %}
+            </a>
+            <a href="{% url 'qr_codes' 1 %}" class="list-group-item list-group-item-action">QR-коды</a>
+        </div>
+        <div class="list-group col-md-10">
+            <nav class="navbar navbar-light bg-light mb-2 border rounded p-1">
+                <div class="input-group w-25 ms-auto">
+                    <input type="text" class="form-control form-control-sm" placeholder="Поиск"
+                           aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary btn-sm" type="button" id="button-addon2">
+                        <i class="fas fa-search mx-3"></i>
+                    </button>
+                </div>
+            </nav>
+            {% for offer in object_list %}
+                <a class="list-group-item list-group-item-action" href="{% url 'offer_detail' offer.pk %}">
+                    <div class="row">
+                        <div class="col-md-1 pe-1">
+                            {% if offer.is_readed %}
+                                <i class="far fa-envelope-open"></i>
+                            {% else %}
+                                <i class="fas fa-envelope"></i>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-3 p-0">
+                            <b>
+                                {{ offer.get_offer_target_display }}
+                            </b>
+                        </div>
+                        <div class="col-md-6">
+                            {{ offer.short_name }}
+                        </div>
+                        <div class="col-md-1 p-0 text-end">
+                            <b>{{ offer.created_at|time }}</b>
+                        </div>
+                        <div class="col-md-1 text-end">
+                            <b>{{ offer.created_at|date:'d.m.Y' }}</b>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <nav class="mt-2">
+            <ul class="pagination">
+                <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %} ms-auto">
+                    <a class="page-link"
+                       {% if page_obj.has_previous %}href="{% url 'offers' page_obj.previous_page_number %}"{% endif %}>Назад</a>
+                </li>
+                <li class="page-item disabled"><a class="page-link" href="#">
+                    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+                </a></li>
+                <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                    <a class="page-link"
+                       {% if page_obj.has_next %}href="{% url 'offers' page_obj.next_page_number %}"{% endif %}>Вперед</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (performance.navigation.type == 2) {
+                location.reload(true);
+            }
+        });
+    </script>
+{% endblock %}

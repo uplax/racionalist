@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="card mx-auto col-md-6 col-sm-12 p-0">
+            <div class="card-header">
+                <h4>Предложение подано</h4>
+            </div>
+            <div class="card-body d-flex">
+                <img class="mx-auto" src="{% static 'success.png'%}" width="150px">
+            </div>
+            <div class="card-body text-center">
+                <p class="card-text">
+                    Предложение по улучшению подано и зарегестрировано под номером <b>№{{ request.session.offer_id }}</b>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
