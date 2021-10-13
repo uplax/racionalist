@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block title %}Основное положение{% endblock %}
 {% block content %}
     <div class="row">
         <div class="card mx-auto col-md-6 col-sm-12 p-0">
@@ -7,36 +7,20 @@
                 <h4>Основное положение</h4>
             </div>
             <div class="card-body">
-                <p class="card-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a efficitur elit. Maecenas nec
-                    euismod urna. Aliquam sed lorem vehicula, varius dolor quis, accumsan urna. Praesent maximus, tortor
-                    ut
-                    malesuada porttitor, metus lectus porta felis, non pellentesque nibh risus quis ante. Phasellus
-                    suscipit
-                    nulla sit amet venenatis suscipit. Sed suscipit dolor quis tristique sodales. Sed in elit nec est
-                    consectetur suscipit. Cras faucibus turpis eget posuere commodo. Nunc convallis bibendum magna eget
-                    finibus. Praesent nec malesuada felis. In massa sem, tincidunt nec hendrerit scelerisque, interdum
-                    id
-                    lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id convallis diam. Duis eu felis
-                    dictum, suscipit dui a, rhoncus nibh.
+                <h4 class="text-danger text-center">!!! ВНИМАНИЕ !!!</h4>
+                <p class="card-text" style="text-align: justify;">
+                    При подаче предложения по улучшению запрещено указывать наименование оборудования, изделий и тех.
+                    процессы. Это относится к рационализаторским предложениям. Если Вы хотите подать рацпредложение,
+                    то в поле «Описание проблемы» напишите «Рацпредложение» (без описания) и с Вами свяжутся лично.
                 </p>
-                <p class="card-text">
-                    Nunc tincidunt tincidunt vehicula. Donec feugiat in lacus in bibendum. Phasellus ullamcorper congue
-                    neque ut condimentum. Phasellus eget metus nec ante convallis scelerisque. Vestibulum non venenatis
-                    tellus, eget mollis lectus. Nunc congue metus sit amet consectetur auctor. Donec id vulputate sem.
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    Vivamus
-                    ornare leo at arcu vehicula feugiat. Etiam dignissim egestas velit, et tempor orci maximus sagittis.
-                    Curabitur scelerisque ante nibh, ac dignissim est finibus a. Suspendisse convallis nulla nisi, ac
-                    iaculis ante molestie a. Donec rhoncus tortor turpis, in semper est accumsan in. Phasellus et porta
-                    erat. Vestibulum consectetur magna vel dignissim ullamcorper.
-                </p>
+                <h4 class="text-danger text-center">!!! ВАЖНО !!!</h4>
             </div>
             <form method="post">
                 {% csrf_token %}
                 <div class="card-body border-top">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault" name="confirmation">
+                        <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault"
+                               name="confirmation">
                         <label class="form-check-label" for="flexCheckDefault">
                             Ознакомлен
                         </label>

@@ -4,6 +4,8 @@
 <link rel="stylesheet" media="print" href="{% static 'css/print.css' %}" />
 {% endblock %}
 
+{% block title %}Предложение по улучшению №{{ offer.pk }}{% endblock %}
+
 {% block content %}
     <table class="table table-bordered rounded-3 shadow w-75 mx-auto">
         <tr>

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import FileResponse
 from django.shortcuts import render, redirect
@@ -34,7 +35,7 @@ class QrCodesList(LoginRequiredMixin, ListView):
     paginate_by = 15
 
 
-class QrCodeCreate(CreateView):
+class QrCodeCreate(LoginRequiredMixin, CreateView):
     model = OfferPoint
     fields = ['name', 'description']
 
@@ -42,7 +43,7 @@ class QrCodeCreate(CreateView):
         return reverse('qr_codes', kwargs={'page': 1})
 
 
-class QrCodeUpdate(UpdateView):
+class QrCodeUpdate(LoginRequiredMixin, UpdateView):
     model = OfferPoint
     fields = ['name', 'description']
 
@@ -51,8 +52,6 @@ class QrCodeUpdate(UpdateView):
 
 
 def confirmation(request, pk):
-    if request.session.get('confirmed', None):
-        return redirect('create_offer', pk)
     if request.method == 'POST':
         request.session['confirmed'] = request.POST.get('confirmation', False)
         if not request.session['confirmed']:
@@ -78,11 +77,13 @@ def create_offer(request, pk):
 
 
 def success(request, pk):
+    request.session['confirmed'] = False
     if not request.session.get('offer_id'):
         return redirect('confirm_agreement', str(pk))
     return render(request, 'offers/success.html')
 
 
+@login_required
 def download(request, pk):
     host = request.get_host()
     offer_point = OfferPoint.objects.get(pk=pk)
@@ -91,5 +92,6 @@ def download(request, pk):
     return FileResponse(temp, as_attachment=True, filename=f'{offer_point.name}.pdf')
 
 
+@login_required
 def index(request):
     return redirect('offers_index')
