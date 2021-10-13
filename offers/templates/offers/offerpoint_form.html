@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}{% if request.resolver_match.url_name == 'qr_codes_create' %}Новый QR-код{% else %}Редактированиекода{% endif %}{% endblock %}
 
 {% block content %}
     <div class="row">
