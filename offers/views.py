@@ -62,6 +62,8 @@ def confirmation(request, pk):
 
 
 def create_offer(request, pk):
+    if not request.session.get('confirmed', None):
+        return redirect('confirm_agreement', pk)
     if request.method == 'POST':
         form_result = {
             'offer_from': pk,
