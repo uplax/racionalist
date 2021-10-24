@@ -59,7 +59,7 @@
     <script type="text/javascript">
         let offerTarget = document.getElementById("offer_target")[0];
         offerTarget.addEventListener("change", function(e) {
-            if (e.target.value === 'Прочее') {
+            if (offerTarget.value === 'Прочее') {
                 document.getElementById("offer_target")[0].show();
             } else {
                 document.getElementById("offer_target")[0].hide();
