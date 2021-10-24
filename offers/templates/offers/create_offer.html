@@ -21,7 +21,7 @@
                     </select>
                 </div>
                 <div class="card-body pt-0 border-bottom">
-                    <input class="form-control" name="target_other" id="target_other" hidden>
+                    <input class="form-control" name="target_other" id="target_other">
                 </div>
                 <div class="card-body">
                     <input class="form-control" placeholder="Короткое описание" name="short_name">
@@ -57,12 +57,13 @@
         </div>
     </div>
     <script type="text/javascript">
-        let offerTarget = document.getElementById("offer_target")[0];
+        let offerTarget = document.getElementById("offer_target");
         offerTarget.addEventListener("change", function(e) {
+            console.log(offerTarget.value);
             if (offerTarget.value === 'Прочее') {
-                document.getElementById("offer_target")[0].show();
+                document.getElementById("target_other").style.visibility = "visible";
             } else {
-                document.getElementById("offer_target")[0].hide();
+                document.getElementById("target_other").style.visibility = "hidden";
             }
         });
     </script>
