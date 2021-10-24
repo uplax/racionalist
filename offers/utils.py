@@ -61,7 +61,7 @@ def generate_pdf(link: str):
     layout.add(p)
     layout.add(
         Paragraph(
-            "Сервис подачи предложений по улушению",
+            "Сервис подачи предложений по улучшению",
             font=font,
             font_size=Decimal(24),
             text_alignment=Alignment.CENTERED,
@@ -79,7 +79,7 @@ def generate_pdf(link: str):
     )
     layout.add(
         Paragraph(
-            "Для подачи предложений по улушению отсканируйте QR-код",
+            "Для подачи предложений по улучшению отсканируйте QR-код",
             font=font,
             font_size=Decimal(12),
             text_alignment=Alignment.CENTERED,
