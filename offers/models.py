@@ -36,7 +36,7 @@ class Offer(models.Model):
     short_name = models.CharField(max_length=100, verbose_name='Короткое описание')
     author_first_name = models.CharField(verbose_name='Имя', max_length=20)
     author_second_name = models.CharField(verbose_name='Фамилия', max_length=20)
-    author_last_name = models.CharField(verbose_name='Отчество', max_length=20)
+    author_last_name = models.CharField(verbose_name='Отчество', max_length=20, null=True, blank=True)
     personnel_number = models.CharField(verbose_name='Табельный номер', max_length=10)
     phone = models.TextField(verbose_name='Номер телефона')
     problem_description = models.TextField(verbose_name='Описание проблемы')

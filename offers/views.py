@@ -75,6 +75,11 @@ def create_offer(request, pk):
             request.session['offer_id'] = res.pk
             request.session['confirmed'] = False
             return redirect('success', str(pk))
+        else:
+            return render(request, 'offers/create_offer.html', {
+                'form': form,
+                'form_errors': {k: v for k, v in form._errors.items()},
+            })
     return render(request, 'offers/create_offer.html', {
         'form': OfferForm
     })

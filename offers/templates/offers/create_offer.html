@@ -22,48 +22,125 @@
                 </div>
                 <div class="card-body pt-0 border-bottom">
                     <input class="form-control" name="target_other" id="target_other">
+                    <small class="text-danger">
+                        {% for k, v in form_errors.items %}
+                            {% if k == 'target_other' %}
+                                {{ v }}
+                            {% endif %}
+                        {% endfor %}
+                    </small>
                 </div>
                 <div class="card-body">
                     <input class="form-control" placeholder="Короткое описание" name="short_name">
+                    <small class="text-danger">
+                        {% for k, v in form_errors.items %}
+                            {% if k == 'short_name' %}
+                                {{ v }}
+                            {% endif %}
+                        {% endfor %}
+                    </small>
                 </div>
                 <div class="card-body pt-0">
                     <input class="form-control" placeholder="Фамилия" name="author_last_name">
+                    <small class="text-danger">
+                        {% for k, v in form_errors.items %}
+                            {% if k == 'author_last_name' %}
+                                {{ v }}
+                            {% endif %}
+                        {% endfor %}
+                    </small>
                 </div>
                 <div class="card-body pt-0">
                     <input class="form-control" placeholder="Имя" name="author_first_name">
+                    <small class="text-danger">
+                        {% for k, v in form_errors.items %}
+                            {% if k == 'author_first_name' %}
+                                {{ v }}
+                            {% endif %}
+                        {% endfor %}
+                    </small>
                 </div>
                 <div class="card-body pt-0">
                     <input class="form-control" placeholder="Отчество" name="author_second_name">
+                    <small class="text-danger">
+                        {% for k, v in form_errors.items %}
+                            {% if k == 'author_second_name' %}
+                                {{ v }}
+                            {% endif %}
+                        {% endfor %}
+                    </small>
                 </div>
                 <div class="card-body pt-0">
                     <input class="form-control" placeholder="Табельный номер" name="personnel_number">
+                    <small class="text-danger">
+                        {% for k, v in form_errors.items %}
+                            {% if k == 'personnel_number' %}
+                                {{ v }}
+                            {% endif %}
+                        {% endfor %}
+                    </small>
                 </div>
                 <div class="card-body pt-0">
                     <input class="form-control" placeholder="Номер телефона" name="phone">
+                    <small class="text-danger">
+                        {% for k, v in form_errors.items %}
+                            {% if k == 'phone' %}
+                                {{ v }}
+                            {% endif %}
+                        {% endfor %}
+                    </small>
                 </div>
                 <div class="card-body pt-0">
                     <textarea class="form-control" placeholder="Описание проблемы" name="problem_description"></textarea>
+                    <small class="text-danger">
+                        {% for k, v in form_errors.items %}
+                            {% if k == 'problem_description' %}
+                                {{ v }}
+                            {% endif %}
+                        {% endfor %}
+                    </small>
                 </div>
                 <div class="card-body pt-0">
                     <textarea class="form-control" placeholder="Предложение по улучшению" name="suggestion_for_improvement"></textarea>
+                    <small class="text-danger">
+                        {% for k, v in form_errors.items %}
+                            {% if k == 'suggestion_for_improvement' %}
+                                {{ v }}
+                            {% endif %}
+                        {% endfor %}
+                    </small>
                 </div>
                 <div class="card-body pt-0">
                     <textarea class="form-control" placeholder="Ожидаемый результат" name="expected_result"></textarea>
+                    <small class="text-danger">
+                        {% for k, v in form_errors.items %}
+                            {% if k == 'expected_result' %}
+                                {{ v }}
+                            {% endif %}
+                        {% endfor %}
+                    </small>
                 </div>
                 <div class="card-body d-flex align-content-center border-top">
-                    <input type="submit" class="btn btn-primary mx-auto" value="Отправить">
+                    <input type="submit" class="btn btn-primary mx-auto" id="submit_form" value="Отправить">
                 </div>
             </form>
         </div>
     </div>
     <script type="text/javascript">
+        document.getElementById("target_other").style.visibility = "hidden";
         let offerTarget = document.getElementById("offer_target");
+        let submitBtn = document.getElementById("submit_form");
+        submitBtn.classList.add('disabled');
         offerTarget.addEventListener("change", function(e) {
-            console.log(offerTarget.value);
             if (offerTarget.value === 'Прочее') {
                 document.getElementById("target_other").style.visibility = "visible";
             } else {
                 document.getElementById("target_other").style.visibility = "hidden";
+            }
+            if (offerTarget.value === "") {
+                submitBtn.classList.add('disabled');
+            } else {
+                submitBtn.classList.remove('disabled');
             }
         });
     </script>
